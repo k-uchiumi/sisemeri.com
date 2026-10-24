@@ -5,6 +5,7 @@ import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
 import { createPublicPageContext } from "emdash/page";
 import { Font } from "astro:assets";
 import { resolveSiteIdentity } from "../utils/site";
+import "@emdash-cms/plugin-forms/styles";
 import "../styles/tokens.css";
 import "../styles/theme.css";
 
@@ -1000,7 +1001,7 @@ const wordmarkLength = [...siteTitle].length;
 
 			.nav__logo-img {
 				width: auto;
-				height: 32px;
+				height: 40px;
 				max-width: 180px;
 				object-fit: contain;
 			}
@@ -1123,7 +1124,7 @@ const wordmarkLength = [...siteTitle].length;
 
 			.footer__logo-img {
 				width: auto;
-				height: 32px;
+				height: 48px;
 				max-width: 180px;
 				object-fit: contain;
 			}

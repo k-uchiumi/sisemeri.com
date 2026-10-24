@@ -32,4 +32,25 @@
 */
 
 :root {
+	/* sisemeri のイメージカラー（ロゴのオレンジ #ED7918）。
+	   ボタンはオレンジ地に濃紺の文字（ロゴと同じ組み合わせ）。 */
+	--color-brand: #ed7918;
+	--color-brand-strong: #d96a0e;
+	--color-on-brand: #1d1b38;
+	--color-brand-ring: color-mix(in srgb, #ed7918 30%, transparent);
+	--color-accent: #ed7918;
+}
+
+/* お問い合わせフォーム（@emdash-cms/plugin-forms）をサイトの色に合わせる */
+.ec-form {
+	--ec-form-field-border: 1px solid var(--color-border-strong);
+	--ec-form-field-radius: 10px;
+	--ec-form-field-padding: 0.75rem 0.875rem;
+	--ec-form-field-bg: var(--color-surface);
+	--ec-form-help-color: var(--color-text-secondary);
+	--ec-form-submit-bg: var(--color-brand);
+	--ec-form-submit-color: var(--color-on-brand);
+	--ec-form-submit-radius: 999px;
+	--ec-form-submit-padding: 0.75rem 1.75rem;
+	max-width: 40rem;
 }
