@@ -1,65 +1,32 @@
-# EmDash Marketing Template (Cloudflare)
+# sisemeri.com
 
-A conversion-focused landing page template built with [EmDash](https://github.com/emdash-cms/emdash) and deployed on Cloudflare Workers with D1 and R2. Modular content blocks let you assemble pages from reusable sections without touching code.
+sisemeri（内海賢一）の営業支援サイト。EmDash 1.x（Astro）で作り、Cloudflare Workers + D1 + R2 で動かしている。
+元は EmDash 公式テンプレート `marketing-cloudflare`。
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/emdash-cms/templates/tree/main/marketing-cloudflare)
+## 構成
 
-![Marketing template homepage](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/marketing/latest/homepage-light-desktop.jpg)
-
-## What's Included
-
-- Hero section with CTAs
-- Feature grid
-- Testimonials
-- Pricing cards
-- FAQ accordion
-- Contact page with direct email links
-- SEO metadata and JSON-LD
-- Dark/light mode
-
-## Pages
-
-| Page | Route |
+| 置き場所 | 中身 |
 |---|---|
-| Homepage | `/` |
-| Pricing | `/pricing` |
-| Contact | `/contact` |
-| 404 | fallback |
+| このリポジトリ | デザイン・ページの型（Astro のコード）、初期コンテンツ `seed/seed.json` |
+| D1 `sisemeri` | 文章・メニュー・サイト設定・フォームの受信内容 |
+| R2 `sisemeri-media` | 画像（ロゴ・ファビコンなど） |
 
-## Screenshots
+- 公開: `main` に push すると Cloudflare Workers Builds がビルドしてデプロイする（Worker 名 `sisemeri-com`）
+- 文章の更新: 管理画面 `/_emdash/admin`、または EmDash の MCP（`/_emdash/api/mcp`、Claude.ai のコネクタ「sisemeri」）
+- お問い合わせフォーム: `@emdash-cms/plugin-forms`（スパム対策はハニーポット）。フォームは管理画面で作り、スラッグ `contact` で `/contact` に埋め込む
+- イメージカラー: ロゴのオレンジ `#ED7918`（`src/styles/theme.css`）
 
-| | Desktop | Mobile |
-|---|---|---|
-| Light | ![homepage light desktop](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/marketing/latest/homepage-light-desktop.jpg) | ![homepage light mobile](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/marketing/latest/homepage-light-mobile.jpg) |
-| Dark | ![homepage dark desktop](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/marketing/latest/homepage-dark-desktop.jpg) | ![homepage dark mobile](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/marketing/latest/homepage-dark-mobile.jpg) |
-
-## Infrastructure
-
-- **Runtime:** Cloudflare Workers
-- **Database:** D1
-- **Storage:** R2
-- **Framework:** Astro with `@astrojs/cloudflare`
-
-## Local Development
+## 手元で動かす
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-Open http://localhost:4321/_emdash/admin and complete the setup wizard. EmDash runs database migrations and applies the marketing seed during setup. The site is available at http://localhost:4321.
+http://localhost:4321/_emdash/admin で初期設定をすると、`seed/seed.json` の内容が入る。
 
-## Deploying
+## トラブル
 
-```bash
-pnpm wrangler login
-pnpm deploy
-```
-
-The first deployment provisions the named D1 database and R2 bucket from `wrangler.jsonc`. See [Deploy to Cloudflare](https://docs.emdashcms.com/deployment/cloudflare/) for production setup, or use the deploy button above.
-
-## See Also
-
-- [Node.js variant](../marketing) -- same template using SQLite and local file storage
-- [All templates](../)
-- [EmDash documentation](https://docs.emdashcms.com/)
+- 「Database migrations are required」が出る: 初回のテーブル作成が途中で止まり、ロックが残っている。
+  D1 のコンソールで `UPDATE _emdash_migrations_lock SET is_locked = 0;` を実行してから、サイトを1回開いて1分待つ。
+- push してもデプロイされない: Cloudflare 側の Git 接続が切れていないか、`wrangler.jsonc` の `name` が Worker 名（`sisemeri-com`）と一致しているかを確認する。
