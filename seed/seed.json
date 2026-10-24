@@ -1,0 +1,989 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "sisemeri",
+		"description": "sisemeri（内海賢一）の営業支援サイト",
+		"author": "sisemeri"
+	},
+	"settings": {
+		"title": "sisemeri",
+		"tagline": "営業30年の実践知を、あなたのビジネス成長に。",
+		"seo": {
+			"titleSeparator": "｜"
+		}
+	},
+	"blockTypes": [
+		{
+			"slug": "marketing_hero",
+			"label": "Hero",
+			"description": "A prominent page introduction with optional calls to action and media",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string",
+							"required": true
+						},
+						{
+							"slug": "subheadline",
+							"label": "Subheadline",
+							"type": "text"
+						},
+						{
+							"slug": "primary_cta_label",
+							"label": "Primary button text",
+							"type": "string"
+						},
+						{
+							"slug": "primary_cta_url",
+							"label": "Primary button link (starts with /, https://, mailto:, tel: or #)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|(?:https?://|mailto:|tel:|/(?!/)|#).+)$"
+							}
+						},
+						{
+							"slug": "secondary_cta_label",
+							"label": "Secondary button text",
+							"type": "string"
+						},
+						{
+							"slug": "secondary_cta_url",
+							"label": "Secondary button link (starts with /, https://, mailto:, tel: or #)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|(?:https?://|mailto:|tel:|/(?!/)|#).+)$"
+							}
+						},
+						{
+							"slug": "image",
+							"label": "Image",
+							"type": "image"
+						},
+						{
+							"slug": "image_caption",
+							"label": "Image caption (shown on the photo)",
+							"type": "string"
+						},
+						{
+							"slug": "eyebrow",
+							"label": "Announcement (shown above the headline)",
+							"type": "string"
+						},
+						{
+							"slug": "eyebrow_url",
+							"label": "Announcement link (starts with /, https://, mailto:, tel: or #)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|/(?!/|\\\\).*|(?:https?://|mailto:|tel:|#).+)$"
+							}
+						},
+						{
+							"slug": "centered",
+							"label": "Center the layout",
+							"type": "boolean",
+							"defaultValue": false
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_features",
+			"label": "Features",
+			"description": "A grid of product or service features",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string",
+							"required": true
+						},
+						{
+							"slug": "subheadline",
+							"label": "Second sentence (shown muted after the headline)",
+							"type": "text"
+						},
+						{
+							"slug": "eyebrow",
+							"label": "Label above headline",
+							"type": "string"
+						},
+						{
+							"slug": "features",
+							"label": "Features",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 12,
+								"subFields": [
+									{
+										"slug": "icon",
+										"label": "Icon",
+										"type": "select",
+										"required": true,
+										"options": [
+											"zap",
+											"shield",
+											"users",
+											"chart",
+											"code",
+											"globe",
+											"heart",
+											"star",
+											"check",
+											"lock",
+											"clock",
+											"cloud",
+											"building",
+											"leaf",
+											"gauge",
+											"thermometer",
+											"plug",
+											"bell",
+											"file",
+											"sun",
+											"trend"
+										]
+									},
+									{
+										"slug": "title",
+										"label": "Title",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "description",
+										"label": "Description (leave a blank line between paragraphs)",
+										"type": "text",
+										"required": true
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_testimonials",
+			"label": "Testimonials",
+			"description": "Customer quotes and attribution. The first quote is shown large",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Section label (small text above the quotes)",
+							"type": "string"
+						},
+						{
+							"slug": "testimonials",
+							"label": "Testimonials",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 12,
+								"subFields": [
+									{
+										"slug": "quote",
+										"label": "Quote (leave a blank line between paragraphs)",
+										"type": "text",
+										"required": true
+									},
+									{
+										"slug": "author",
+										"label": "Author name",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "role",
+										"label": "Role or title",
+										"type": "string"
+									},
+									{
+										"slug": "company",
+										"label": "Company",
+										"type": "string"
+									},
+									{
+										"slug": "avatar",
+										"label": "Avatar (initials show when empty)",
+										"type": "image"
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_pricing",
+			"label": "Pricing",
+			"description": "A comparison of up to three pricing plans",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string"
+						},
+						{
+							"slug": "plans",
+							"label": "Plans",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 3,
+								"subFields": [
+									{
+										"slug": "name",
+										"label": "Plan name",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "price",
+										"label": "Price",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "period",
+										"label": "Period",
+										"type": "string"
+									},
+									{
+										"slug": "description",
+										"label": "Description (leave a blank line between paragraphs)",
+										"type": "text"
+									},
+									{
+										"slug": "features",
+										"label": "Features (one per line)",
+										"type": "text"
+									},
+									{
+										"slug": "cta_label",
+										"label": "Button text",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "cta_url",
+										"label": "Button link (starts with /, https://, mailto:, tel: or #)",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "highlighted",
+										"label": "Highlight this plan",
+										"type": "boolean"
+									},
+									{
+										"slug": "badge",
+										"label": "Badge text, for example Most popular",
+										"type": "string"
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_faq",
+			"label": "FAQ",
+			"description": "A list of frequently asked questions",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string"
+						},
+						{
+							"slug": "subheadline",
+							"label": "Subheadline",
+							"type": "text"
+						},
+						{
+							"slug": "items",
+							"label": "Questions",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 12,
+								"subFields": [
+									{
+										"slug": "question",
+										"label": "Question",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "answer",
+										"label": "Answer (leave a blank line between paragraphs)",
+										"type": "text",
+										"required": true
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_logos",
+			"label": "Logo wall",
+			"description": "A scrolling row of customer or partner logos. Names without a logo show as text",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Section label (small text above the logos)",
+							"type": "string"
+						},
+						{
+							"slug": "logos",
+							"label": "Logos",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 24,
+								"subFields": [
+									{
+										"slug": "name",
+										"label": "Company name",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "logo",
+										"label": "Logo",
+										"type": "image"
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_split",
+			"label": "Text and image",
+			"description": "A headline, copy and checklist beside a photo",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string",
+							"required": true
+						},
+						{
+							"slug": "eyebrow",
+							"label": "Label above headline",
+							"type": "string"
+						},
+						{
+							"slug": "body",
+							"label": "Body (leave a blank line between paragraphs)",
+							"type": "text"
+						},
+						{
+							"slug": "points",
+							"label": "Checklist (one item per line)",
+							"type": "text"
+						},
+						{
+							"slug": "cta_label",
+							"label": "Link text",
+							"type": "string"
+						},
+						{
+							"slug": "cta_url",
+							"label": "Link (starts with /, https://, mailto:, tel: or #)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|/(?!/|\\\\).*|(?:https?://|mailto:|tel:|#).+)$"
+							}
+						},
+						{
+							"slug": "image",
+							"label": "Image",
+							"type": "image"
+						},
+						{
+							"slug": "image_caption",
+							"label": "Image caption (shown on the photo)",
+							"type": "string"
+						},
+						{
+							"slug": "image_first",
+							"label": "Show the image first",
+							"type": "boolean",
+							"defaultValue": false
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_stats",
+			"label": "Stats",
+			"description": "Headline numbers on a dark panel",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string"
+						},
+						{
+							"slug": "subheadline",
+							"label": "Second sentence (shown muted after the headline)",
+							"type": "text"
+						},
+						{
+							"slug": "stats",
+							"label": "Stats",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 6,
+								"subFields": [
+									{
+										"slug": "value",
+										"label": "Value",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "label",
+										"label": "Label",
+										"type": "string",
+										"required": true
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_cta",
+			"label": "Call to action",
+			"description": "A closing call to action over a photo or dark panel",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string",
+							"required": true
+						},
+						{
+							"slug": "body",
+							"label": "Body (leave a blank line between paragraphs)",
+							"type": "text"
+						},
+						{
+							"slug": "primary_cta_label",
+							"label": "Primary button text",
+							"type": "string"
+						},
+						{
+							"slug": "primary_cta_url",
+							"label": "Primary button link (starts with /, https://, mailto:, tel: or #)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|/(?!/|\\\\).*|(?:https?://|mailto:|tel:|#).+)$"
+							}
+						},
+						{
+							"slug": "secondary_cta_label",
+							"label": "Secondary button text",
+							"type": "string"
+						},
+						{
+							"slug": "secondary_cta_url",
+							"label": "Secondary button link (starts with /, https://, mailto:, tel: or #)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|/(?!/|\\\\).*|(?:https?://|mailto:|tel:|#).+)$"
+							}
+						},
+						{
+							"slug": "image",
+							"label": "Background image",
+							"type": "image"
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_contact",
+			"label": "Contact options",
+			"description": "Cards that point readers to the right email address, phone number or page",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string"
+						},
+						{
+							"slug": "eyebrow",
+							"label": "Label above headline",
+							"type": "string"
+						},
+						{
+							"slug": "subheadline",
+							"label": "Subheadline",
+							"type": "text"
+						},
+						{
+							"slug": "options",
+							"label": "Contact options",
+							"type": "repeater",
+							"required": true,
+							"validation": {
+								"minItems": 1,
+								"maxItems": 6,
+								"subFields": [
+									{
+										"slug": "icon",
+										"label": "Icon",
+										"type": "select",
+										"required": true,
+										"options": [
+											"email",
+											"support",
+											"sales",
+											"phone",
+											"chat",
+											"location"
+										]
+									},
+									{
+										"slug": "title",
+										"label": "Title",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "description",
+										"label": "Description (leave a blank line between paragraphs)",
+										"type": "text"
+									},
+									{
+										"slug": "link_label",
+										"label": "Link text",
+										"type": "string",
+										"required": true
+									},
+									{
+										"slug": "link_url",
+										"label": "Link (starts with /, https://, mailto:, tel: or #)",
+										"type": "url",
+										"required": true
+									}
+								]
+							}
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"slug": "marketing_text",
+			"label": "Text",
+			"description": "Long-form text with headings, lists and links, for pages like About or Privacy",
+			"category": "Marketing",
+			"currentVersion": 1,
+			"versions": [
+				{
+					"version": 1,
+					"fields": [
+						{
+							"slug": "headline",
+							"label": "Headline",
+							"type": "string"
+						},
+						{
+							"slug": "body",
+							"label": "Body",
+							"type": "portableText",
+							"required": true
+						},
+						{
+							"slug": "anchor_id",
+							"label": "Section ID (lowercase, for links like /#pricing)",
+							"type": "string",
+							"validation": {
+								"pattern": "^(?:$|[a-z][a-z0-9_-]*)$"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"collections": [
+		{
+			"slug": "pages",
+			"label": "Pages",
+			"labelSingular": "Page",
+			"urlPattern": "/{slug}",
+			"supports": [
+				"drafts",
+				"revisions",
+				"preview",
+				"seo"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "blocks",
+					"validation": {
+						"allowedTypes": [
+							"marketing_hero",
+							"marketing_features",
+							"marketing_testimonials",
+							"marketing_pricing",
+							"marketing_faq",
+							"marketing_logos",
+							"marketing_split",
+							"marketing_stats",
+							"marketing_cta",
+							"marketing_contact",
+							"marketing_text"
+						],
+						"maxItems": 20
+					}
+				}
+			]
+		}
+	],
+	"menus": [
+		{
+			"name": "primary",
+			"label": "メインメニュー",
+			"items": [
+				{
+					"type": "custom",
+					"label": "サービス",
+					"url": "/#services"
+				},
+				{
+					"type": "custom",
+					"label": "プロフィール",
+					"url": "/#profile"
+				},
+				{
+					"type": "custom",
+					"label": "相談する",
+					"url": "/contact",
+					"cssClasses": "button"
+				}
+			]
+		},
+		{
+			"name": "footer_product",
+			"label": "サービス",
+			"items": [
+				{
+					"type": "custom",
+					"label": "サービス一覧",
+					"url": "/#services"
+				}
+			]
+		},
+		{
+			"name": "footer_company",
+			"label": "sisemeri",
+			"items": [
+				{
+					"type": "custom",
+					"label": "プロフィール",
+					"url": "/#profile"
+				},
+				{
+					"type": "custom",
+					"label": "note",
+					"url": "https://note.com/ucchiii3"
+				}
+			]
+		},
+		{
+			"name": "footer_support",
+			"label": "お問い合わせ",
+			"items": [
+				{
+					"type": "custom",
+					"label": "お問い合わせ",
+					"url": "/contact"
+				}
+			]
+		}
+	],
+	"content": {
+		"pages": [
+			{
+				"id": "home",
+				"slug": "home",
+				"status": "published",
+				"data": {
+					"title": "ホーム",
+					"content": [
+						{
+							"_type": "marketing_hero",
+							"_version": 1,
+							"_key": "hero",
+							"headline": "営業30年の実践知を、あなたのビジネス成長に。",
+							"subheadline": "営業の現場で30年以上積み重ねてきた経験をもとに、中小企業・個人事業主の方向けに、成果につながる営業支援を行っています。",
+							"primary_cta_label": "相談する",
+							"primary_cta_url": "/contact",
+							"secondary_cta_label": "サービスを見る",
+							"secondary_cta_url": "/#services"
+						},
+						{
+							"_type": "marketing_features",
+							"_version": 1,
+							"_key": "services",
+							"anchor_id": "services",
+							"eyebrow": "サービス",
+							"headline": "成果につながる営業を、一緒につくる。",
+							"subheadline": "戦略から資料、商談、顧客開拓まで。",
+							"features": [
+								{
+									"icon": "chart",
+									"title": "営業戦略コンサルティング",
+									"description": "市場分析・競合調査（3C分析）をもとに戦略を立てます。貴社の強みを明確にし、最適な営業戦略をご提案します。"
+								},
+								{
+									"icon": "file",
+									"title": "営業資料・提案書の作成支援",
+									"description": "お客様の心をつかむ資料の構成と作り方をお伝えします。プレゼンテーションの力を最大化するよう、提案資料を改善します。"
+								},
+								{
+									"icon": "users",
+									"title": "営業パフォーマンス向上研修",
+									"description": "商談力・ヒアリング力を高める実践的なトレーニングです。営業の心理学を取り入れたコミュニケーションの方法をお伝えします。"
+								},
+								{
+									"icon": "trend",
+									"title": "顧客開拓・アポイント獲得の支援",
+									"description": "効果的な営業シナリオとアプローチ方法を作ります。狙う顧客に効率よく接触し、アポイントを取るためのノウハウをお伝えします。"
+								}
+							]
+						},
+						{
+							"_type": "marketing_split",
+							"_version": 1,
+							"_key": "profile",
+							"anchor_id": "profile",
+							"eyebrow": "プロフィール",
+							"headline": "内海 賢一",
+							"body": "IT業界で30年以上、法人営業に携わってきました。その経験を活かし、企業の売上向上を支援しています。\n\nGoogle Analyticsなどのデータ分析も扱い、データにもとづく営業の進め方を得意としています。",
+							"points": "IT業界での法人営業 30年以上\nデータ分析を活かした営業支援\nnoteで営業の実践知を発信中",
+							"cta_label": "noteを読む",
+							"cta_url": "https://note.com/ucchiii3"
+						},
+						{
+							"_type": "marketing_cta",
+							"_version": 1,
+							"_key": "cta",
+							"headline": "営業の悩みを、まず話してみませんか。",
+							"body": "営業戦略、提案資料、営業研修、顧客開拓のご相談を受け付けています。",
+							"primary_cta_label": "相談する",
+							"primary_cta_url": "/contact"
+						}
+					]
+				}
+			},
+			{
+				"id": "contact",
+				"slug": "contact",
+				"status": "published",
+				"data": {
+					"title": "お問い合わせ",
+					"content": [
+						{
+							"_type": "marketing_hero",
+							"_version": 1,
+							"_key": "contact-hero",
+							"headline": "お問い合わせ",
+							"subheadline": "営業戦略、提案資料、営業研修、顧客開拓のご相談はこちらから。お問い合わせを使った営業行為はお断りします。",
+							"centered": true
+						},
+						{
+							"_type": "marketing_text",
+							"_version": 1,
+							"_key": "contact-note",
+							"body": [
+								{
+									"_type": "block",
+									"_key": "b0",
+									"style": "normal",
+									"markDefs": [],
+									"children": [
+										{
+											"_type": "span",
+											"_key": "s0",
+											"text": "お問い合わせフォームは準備中です。",
+											"marks": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	}
+}
