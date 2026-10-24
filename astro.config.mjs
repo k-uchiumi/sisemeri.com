@@ -8,6 +8,16 @@ import { formsPlugin } from "@emdash-cms/plugin-forms";
 
 export default defineConfig({
 	output: "server",
+	// 旧WordPress版のURL → 新しいページ（2026-10 移行）
+	redirects: {
+		"/our-services": "/#services",
+		"/our-story": "/#profile",
+		"/contact-us": "/contact",
+		"/global-styles": "/",
+		"/author/kuchiumi": "/",
+		"/feed": "/",
+		"/comments/feed": "/",
+	},
 	adapter: cloudflare(),
 	image: {
 		layout: "constrained",
