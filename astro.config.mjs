@@ -90,20 +90,21 @@ export default defineConfig({
 			],
 		}),
 	],
+	// 日本語サイトなので本文・見出しとも日本語書体（英数字も同じ書体で揃う）
 	fonts: [
 		{
 			provider: fontProviders.google(),
-			name: "Inter",
+			name: "Noto Sans JP",
 			cssVariable: "--font-body",
-			weights: [400, 500, 600, 700],
+			weights: [400, 500, 700],
 			fallbacks: ["sans-serif"],
 		},
 		{
 			provider: fontProviders.google(),
-			name: "Instrument Serif",
+			name: "Noto Serif JP",
 			cssVariable: "--font-display",
-			weights: [400],
-			styles: ["normal", "italic"],
+			weights: [500],
+			styles: ["normal"],
 			fallbacks: ["serif"],
 		},
 	],

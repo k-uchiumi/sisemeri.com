@@ -88,8 +88,8 @@ const wordmarkLength = [...siteTitle].length;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
-		<Font cssVariable="--font-body" preload />
-		<Font cssVariable="--font-display" preload={[{ style: "normal" }]} />
+		<Font cssVariable="--font-body" />
+		<Font cssVariable="--font-display" />
 		<script is:inline>
 			// Apply an explicit theme choice immediately to prevent flash.
 			// With no cookie, color-scheme: light dark follows the OS.

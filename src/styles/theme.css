@@ -39,6 +39,12 @@
 	--color-on-brand: #1d1b38;
 	--color-brand-ring: color-mix(in srgb, #ed7918 30%, transparent);
 	--color-accent: #ed7918;
+
+	/* 日本語書体（astro.config.mjs で Noto Sans JP / Noto Serif JP を読み込み）。
+	   和文は詰めると読みにくいので字間を詰めない */
+	--font-weight-display: 500;
+	--tracking-tight: 0;
+	--tracking-snug: 0;
 }
 
 /* お問い合わせフォーム（@emdash-cms/plugin-forms）をサイトの色に合わせる */
