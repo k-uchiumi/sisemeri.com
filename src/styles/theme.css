@@ -60,3 +60,10 @@
 	--ec-form-submit-padding: 0.75rem 1.75rem;
 	max-width: 40rem;
 }
+
+/* 見出しを「実践／知」のように単語の途中で折り返さない（対応ブラウザのみ） */
+h1,
+h2,
+h3 {
+	word-break: auto-phrase;
+}
