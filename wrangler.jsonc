@@ -10,6 +10,7 @@
 			"database_name": "sisemeri",
 		},
 	],
+	"send_email": [{ "name": "EMAIL" }],
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",

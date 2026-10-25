@@ -1,6 +1,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import { d1, r2 } from "@emdash-cms/cloudflare";
+import { cloudflareEmail } from "@emdash-cms/cloudflare/plugins";
 import icon from "astro-iconset";
 import { defineConfig, fontProviders } from "astro/config";
 import emdash from "emdash/astro";
@@ -82,7 +83,11 @@ export default defineConfig({
 		emdash({
 			database: d1({ binding: "DB", session: "auto", coalesce: true }),
 			storage: r2({ binding: "MEDIA" }),
-			plugins: [formsPlugin({ defaultSpamProtection: "honeypot" })],
+			plugins: [
+				formsPlugin({ defaultSpamProtection: "honeypot" }),
+				// フォームの通知メール（Cloudflare Email Sending、送信元は sisemeri.com）
+				cloudflareEmail({ from: { email: "noreply@sisemeri.com", name: "sisemeri" }, binding: "EMAIL" }),
+			],
 		}),
 	],
 	fonts: [
